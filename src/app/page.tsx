@@ -30,6 +30,16 @@ export default function Home() {
 
       console.log(keccak256(signedMessage));
 
+      const response = await fetch('/api/commitments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          commitment: signedMessage,
+        }),
+      });
+
       setSuccess(true);
       setFailure(false);
       setSecret("");
