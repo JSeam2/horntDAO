@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import { createClient } from '@supabase/supabase-js'
@@ -54,7 +53,6 @@ export async function POST(request: Request) {
 // Optional: GET endpoint to retrieve commitments
 export async function GET(request: Request) {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
     
     const { searchParams } = new URL(request.url);
     const commitment = searchParams.get('commitment');
