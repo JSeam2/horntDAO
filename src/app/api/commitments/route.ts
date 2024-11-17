@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.SUPABASE_URL || "tempurl";
-const supabaseKey = process.env.SUPABASE_KEY || "tempkey";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "tempurl";
+const supabaseKey = process.env.SUPABASE_ANON_KEY || "tempkey";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 
