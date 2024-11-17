@@ -1,6 +1,10 @@
+'use client'
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import PrelineScript from "@/components/PrelineScript";
+import { Web3Provider } from "@/components/Web3Provider";
 
 
 const geistSans = localFont({
@@ -29,8 +33,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Web3Provider>
         {children}
+        </Web3Provider>
       </body>
+      <PrelineScript />
     </html>
   );
 }
