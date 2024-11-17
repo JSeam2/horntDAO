@@ -4,7 +4,6 @@ import { useState } from 'react';
 import NavBar from "@/components/NavBar";
 import { useSignMessage } from 'wagmi';
 import { keccak256 } from 'viem';
-import { Web3Provider } from "@/components/Web3Provider";
 
 
 export default function Home() {
@@ -29,16 +28,24 @@ export default function Home() {
         message: secret,
       });
 
-      const commitment = keccak256(signedMessage);
+      console.log(keccak256(signedMessage));
 
       setSuccess(true);
       setFailure(false);
       setSecret("");
 
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setFailureMsg(error.message);
+      } else if (typeof error === 'string') {
+        setFailureMsg(error);
+      } else {
+        setFailureMsg("An unknown error occurred");
+        console.error("Unexpected error:", error);
+      }
+
       setSuccess(false);
       setFailure(true);
-      setFailureMsg((error as any).message);
     }
   };
 

@@ -1,6 +1,4 @@
 'use client'
-
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import PrelineScript from "@/components/PrelineScript";
@@ -18,23 +16,18 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const metadata: Metadata = {
-  title: "HorntDAO",
-  description: "Public Goods for Horny People",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Web3Provider>
-        {children}
+          {children}
         </Web3Provider>
       </body>
       <PrelineScript />
